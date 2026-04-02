@@ -1808,13 +1808,14 @@ voice_assistant:
     channels: 0
   media_player: external_media_player
   micro_wake_word: mww
-  use_wake_word: false
+  use_wake_word: true
   noise_suppression_level: 0
   auto_gain: 0 dbfs
   volume_multiplier: 1
   on_client_connected:
     - lambda: id(init_in_progress) = false;
-    - micro_wake_word.start:
+    #- micro_wake_word.start:
+    - voice_assistant.start_continuous:
     - lambda: id(voice_assistant_phase) = ${voice_assist_idle_phase_id};
     - script.execute: control_leds
   on_client_disconnected:
